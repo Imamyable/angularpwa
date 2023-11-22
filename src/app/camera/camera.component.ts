@@ -31,7 +31,7 @@ export class CameraComponent implements OnInit {
       return;
     }
 
-    navigator.mediaDevices.getUserMedia({ video: true })
+    navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
       .then(stream => {
         if (this.videoElement) {
           this.video = this.videoElement.nativeElement;
