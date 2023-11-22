@@ -1,7 +1,7 @@
 {
   "configVersion": 1,
-  "timestamp": 1700666691490,
-  "index": "/imamyable.github.io/index.html",
+  "timestamp": 1700668125422,
+  "index": "/browser/index.html",
   "assetGroups": [
     {
       "name": "app",
@@ -11,12 +11,12 @@
         "ignoreVary": true
       },
       "urls": [
-        "/imamyable.github.io/favicon.ico",
-        "/imamyable.github.io/index.html",
-        "/imamyable.github.io/main-IWA7OZD7.js",
-        "/imamyable.github.io/manifest.webmanifest",
-        "/imamyable.github.io/polyfills-LZBJRJJE.js",
-        "/imamyable.github.io/styles-5INURTSO.css"
+        "/browser/favicon.ico",
+        "/browser/index.html",
+        "/browser/main-IWA7OZD7.js",
+        "/browser/manifest.webmanifest",
+        "/browser/polyfills-LZBJRJJE.js",
+        "/browser/styles-5INURTSO.css"
       ],
       "patterns": []
     },
@@ -28,36 +28,36 @@
         "ignoreVary": true
       },
       "urls": [
-        "/imamyable.github.io/assets/icons/icon-128x128.png",
-        "/imamyable.github.io/assets/icons/icon-144x144.png",
-        "/imamyable.github.io/assets/icons/icon-152x152.png",
-        "/imamyable.github.io/assets/icons/icon-192x192.png",
-        "/imamyable.github.io/assets/icons/icon-384x384.png",
-        "/imamyable.github.io/assets/icons/icon-512x512.png",
-        "/imamyable.github.io/assets/icons/icon-72x72.png",
-        "/imamyable.github.io/assets/icons/icon-96x96.png",
-        "/imamyable.github.io/assets/left.svg"
+        "/browser/assets/icons/icon-128x128.png",
+        "/browser/assets/icons/icon-144x144.png",
+        "/browser/assets/icons/icon-152x152.png",
+        "/browser/assets/icons/icon-192x192.png",
+        "/browser/assets/icons/icon-384x384.png",
+        "/browser/assets/icons/icon-512x512.png",
+        "/browser/assets/icons/icon-72x72.png",
+        "/browser/assets/icons/icon-96x96.png",
+        "/browser/assets/left.svg"
       ],
       "patterns": []
     }
   ],
   "dataGroups": [],
   "hashTable": {
-    "/imamyable.github.io/assets/icons/icon-128x128.png": "f912963bdc6d5a38d8f1dd0afbaab2ce8d657acb",
-    "/imamyable.github.io/assets/icons/icon-144x144.png": "b155fd5f2fd5d2ea7760721063003c4cd95fd783",
-    "/imamyable.github.io/assets/icons/icon-152x152.png": "eae6e0f0c8afb8aaae339e2a569b43e9238e5e6c",
-    "/imamyable.github.io/assets/icons/icon-192x192.png": "15c4180454633880d98674aa7394656196c91584",
-    "/imamyable.github.io/assets/icons/icon-384x384.png": "94a915751ef6c9282df9aea405ad679230631814",
-    "/imamyable.github.io/assets/icons/icon-512x512.png": "1de182f76f7329dfa8f9fcdd1fdcdd695bea6a99",
-    "/imamyable.github.io/assets/icons/icon-72x72.png": "aa88a6096bd973be7f6d7a5489bfa6bc2463f8c4",
-    "/imamyable.github.io/assets/icons/icon-96x96.png": "7fb8f59c30ce2ff12c700321a0b39e14b3dc8f95",
-    "/imamyable.github.io/assets/left.svg": "e4c2b77490dbf69fcaa21cc91b3a836c36965395",
-    "/imamyable.github.io/favicon.ico": "9c39f434fe1261f68c5e3eefdf734630d99c5670",
-    "/imamyable.github.io/index.html": "a92b651fa524dd3be7395386c4fbcb34e84da2ea",
-    "/imamyable.github.io/main-IWA7OZD7.js": "14d91e4410500a07d9aa8eb1a8fba507123d9717",
-    "/imamyable.github.io/manifest.webmanifest": "be3156cf706ffa6678c2d7c8a42b408d09cd4507",
-    "/imamyable.github.io/polyfills-LZBJRJJE.js": "fda1c82c5c620f1fa442f687b3df45a037f6fcc9",
-    "/imamyable.github.io/styles-5INURTSO.css": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+    "/browser/assets/icons/icon-128x128.png": "f912963bdc6d5a38d8f1dd0afbaab2ce8d657acb",
+    "/browser/assets/icons/icon-144x144.png": "b155fd5f2fd5d2ea7760721063003c4cd95fd783",
+    "/browser/assets/icons/icon-152x152.png": "eae6e0f0c8afb8aaae339e2a569b43e9238e5e6c",
+    "/browser/assets/icons/icon-192x192.png": "15c4180454633880d98674aa7394656196c91584",
+    "/browser/assets/icons/icon-384x384.png": "94a915751ef6c9282df9aea405ad679230631814",
+    "/browser/assets/icons/icon-512x512.png": "1de182f76f7329dfa8f9fcdd1fdcdd695bea6a99",
+    "/browser/assets/icons/icon-72x72.png": "aa88a6096bd973be7f6d7a5489bfa6bc2463f8c4",
+    "/browser/assets/icons/icon-96x96.png": "7fb8f59c30ce2ff12c700321a0b39e14b3dc8f95",
+    "/browser/assets/left.svg": "e4c2b77490dbf69fcaa21cc91b3a836c36965395",
+    "/browser/favicon.ico": "9c39f434fe1261f68c5e3eefdf734630d99c5670",
+    "/browser/index.html": "1b4e2e3b64ca8c141b3ff841788aed0e1c4ab9e6",
+    "/browser/main-IWA7OZD7.js": "14d91e4410500a07d9aa8eb1a8fba507123d9717",
+    "/browser/manifest.webmanifest": "be3156cf706ffa6678c2d7c8a42b408d09cd4507",
+    "/browser/polyfills-LZBJRJJE.js": "fda1c82c5c620f1fa442f687b3df45a037f6fcc9",
+    "/browser/styles-5INURTSO.css": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
   },
   "navigationUrls": [
     {
