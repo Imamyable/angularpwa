@@ -1,12 +1,15 @@
-
 <div class="absoluteFill">
-    <video #videoElement autoplay></video>
 
-<car-left-svg-mask></car-left-svg-mask>
-<img *ngIf="capturedImage" [src]="capturedImage" alt="Captured Image" />
+	<video #videoElement autoplay></video>
 
-<button class="capture-button" (click)="capture()"></button>
+	<car-left-svg-mask></car-left-svg-mask>
+	<img *ngIf="capturedImage" [src]="capturedImage" alt="Captured Image" />
 
-<button class="accept-button" *ngIf="capturedImage"(click)="acceptPhoto()"></button>
-<button class="retake-button" *ngIf="capturedImage"(click)="retakePhoto()"></button>
+	<button class="capture-button" (click)="capture()"></button>
+
+	<button class="accept-button" *ngIf="capturedImage" (click)="acceptPhoto()"></button>
+	<button class="retake-button" *ngIf="capturedImage" (click)="retakePhoto()"></button>
 </div>
+<span class="time" *ngIf="cameraInitElapsedTime">
+	Camera initialized in: {{ cameraInitElapsedTime | number:'1.0-2' }} milliseconds.
+</span>

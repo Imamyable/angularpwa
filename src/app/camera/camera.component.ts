@@ -14,14 +14,10 @@ export class CameraComponent implements OnInit {
   @ViewChild('videoElement') videoElement: ElementRef<HTMLVideoElement> | undefined;
   video!: HTMLVideoElement | undefined;
   capturedImage: string | null = null; 
+  cameraInitStartTime: number = 0;
+  cameraInitElapsedTime: number = 0;
 
-  originalWidth = 490;
-    originalHeight = 380;
-
-    // Calculate the center for rotation
-    centerX = this.originalWidth / 2;
-    centerY = this.originalHeight / 2;
-    constructor(@Inject(PLATFORM_ID) private platformId: Object) { }
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) { }
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
@@ -31,6 +27,7 @@ export class CameraComponent implements OnInit {
   }
 
   initCamera() {
+    this.cameraInitStartTime = performance.now();
     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
       console.error('Browser API navigator.mediaDevices.getUserMedia not available');
       return;
@@ -42,6 +39,9 @@ export class CameraComponent implements OnInit {
           this.video = this.videoElement.nativeElement;
           this.video.srcObject = stream;
           this.video.play();
+          this.cameraInitElapsedTime = performance.now() - this.cameraInitStartTime;
+      console.log(`Camera initialized in ${this.cameraInitElapsedTime} milliseconds.`);
+
         }
       })
       .catch(err => console.error('Error accessing camera: ', err));
