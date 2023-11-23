@@ -10,7 +10,6 @@ div {
 }
 
 video, img {
-  min-width: 100%;
   min-height: 100%;
   position: absolute;
   /* width: auto;
@@ -22,6 +21,11 @@ video, img {
   object-fit: cover;
 }
 
+img {
+  min-height: 100%;
+  position: absolute;
+  object-fit: cover;
+}
 .capture-button {
   position: absolute;
   bottom: 20px; /* Adjust this value to position the button where you want */

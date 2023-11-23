@@ -1,9 +1,9 @@
 <div class="absoluteFill">
-	<img *ngIf="capturedImage" [src]="capturedImage" alt="Captured Image" />
+	
 	<video #videoElement autoplay></video>
 
 	<car-left-svg-mask></car-left-svg-mask>
-	
+	<img *ngIf="capturedImage" [src]="capturedImage" alt="Captured Image" />
 
 	<button class="capture-button" (click)="capture()"></button>
 
@@ -14,7 +14,7 @@
 	Camera initialized in: {{ cameraInitElapsedTime | number:'1.0-2' }} milliseconds.
 	<br/>
 	<span *ngIf="imageWidth">
-		Captured image dimensions: {{ imageWidth }} x {{  imageHeight }} 
+		Captured image dimensions(w x h): {{ imageWidth }} x {{  imageHeight }} 
 	</span>
 	<br/>
 	<span *ngIf="capturedImagesize">
