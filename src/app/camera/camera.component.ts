@@ -16,6 +16,9 @@ export class CameraComponent implements OnInit {
   capturedImage: string | null = null; 
   cameraInitStartTime: number = 0;
   cameraInitElapsedTime: number = 0;
+  capturedImagesize: number = 0;
+  imageHeight: number = 0;
+  imageWidth: number = 0;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) { }
 
@@ -33,7 +36,7 @@ export class CameraComponent implements OnInit {
       return;
     }
 
-    navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+    navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment', width: { ideal: 3840 }, height: { ideal: 2160 } } })
       .then(stream => {
         if (this.videoElement) {
           this.video = this.videoElement.nativeElement;
@@ -41,6 +44,7 @@ export class CameraComponent implements OnInit {
           this.video.play();
           this.cameraInitElapsedTime = performance.now() - this.cameraInitStartTime;
       console.log(`Camera initialized in ${this.cameraInitElapsedTime} milliseconds.`);
+      
 
         }
       })
@@ -53,16 +57,23 @@ export class CameraComponent implements OnInit {
       canvas.width = this.video.videoWidth;
       canvas.height = this.video.videoHeight;
       const ctx = canvas.getContext('2d');
+      this.imageHeight = this.video.videoHeight;
+      this.imageWidth = this.video.videoWidth;
+      console.log("dimensions:",  canvas.width, canvas.height);
 
       // Draw the current frame from the video onto the canvas
       ctx?.drawImage(this.video, 0, 0, canvas.width, canvas.height);
 
       // Convert the canvas to a data URL
       this.capturedImage = canvas.toDataURL('image/png');
-      
-      // Optional: Display the captured image
-      // You can also download or send this image to a server
+      this.dataURLToBlob(this.capturedImage).then(blob => {
+        this.capturedImagesize = blob.size /1000;
+        console.log(`Captured image size: ${blob.size} bytes`);
+      });
     }
+  }
+  dataURLToBlob(dataURL: string): Promise<Blob> {
+    return fetch(dataURL).then(res => res.blob());
   }
 
   acceptPhoto() {

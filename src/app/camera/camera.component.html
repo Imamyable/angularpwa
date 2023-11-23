@@ -12,4 +12,12 @@
 </div>
 <span class="time" *ngIf="cameraInitElapsedTime">
 	Camera initialized in: {{ cameraInitElapsedTime | number:'1.0-2' }} milliseconds.
+	<br/>
+	<span *ngIf="imageWidth">
+		Captured image dimensions: {{ imageWidth }} x {{  imageHeight }} 
+	</span>
+	<br/>
+	<span *ngIf="capturedImagesize">
+		Captured imagesize: {{ capturedImagesize }} kB
+	</span>
 </span>
