@@ -1,9 +1,9 @@
 <div class="absoluteFill">
-
+	<img *ngIf="capturedImage" [src]="capturedImage" alt="Captured Image" />
 	<video #videoElement autoplay></video>
 
 	<car-left-svg-mask></car-left-svg-mask>
-	<img *ngIf="capturedImage" [src]="capturedImage" alt="Captured Image" />
+	
 
 	<button class="capture-button" (click)="capture()"></button>
 
