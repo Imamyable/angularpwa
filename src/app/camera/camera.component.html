@@ -20,4 +20,8 @@
 	<span *ngIf="capturedImagesize">
 		Captured imagesize: {{ capturedImagesize }} kB
 	</span>
+	<br />
+	<span *ngIf="cameraCaptureElapsedTime">
+		Captured in: {{ cameraCaptureElapsedTime | number:'1.0-2' }} milliseconds.
+	</span>
 </span>

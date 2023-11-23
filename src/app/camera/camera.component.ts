@@ -24,6 +24,8 @@ export class CameraComponent implements OnInit {
   capturedImage: string | null = null;
   cameraInitStartTime: number = 0;
   cameraInitElapsedTime: number = 0;
+  cameraCaptureStartTime: number = 0;
+  cameraCaptureElapsedTime: number = 0;
   capturedImagesize: number = 0;
   imageHeight: number = 0;
   imageWidth: number = 0;
@@ -69,6 +71,7 @@ export class CameraComponent implements OnInit {
       .catch((err) => console.error('Error accessing camera: ', err));
   }
   capture() {
+    this.cameraCaptureStartTime = performance.now();
     console.log('Image captured');
     const canvas = document.createElement('canvas');
     if (this.video) {
@@ -88,6 +91,9 @@ export class CameraComponent implements OnInit {
         this.capturedImagesize = blob.size / 1000;
         console.log(`Captured image size: ${blob.size} bytes`);
       });
+
+      this.cameraCaptureElapsedTime =
+            performance.now() - this.cameraCaptureStartTime;
     }
   }
   dataURLToBlob(dataURL: string): Promise<Blob> {
