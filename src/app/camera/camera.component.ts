@@ -24,11 +24,14 @@ export class CameraComponent implements OnInit {
   capturedImage: string | null = null;
   cameraInitStartTime: number = 0;
   cameraInitElapsedTime: number = 0;
+  cameraReloadStartTime: number = 0;
+  cameraReloadElapsedTime: number = 0;
   cameraCaptureStartTime: number = 0;
   cameraCaptureElapsedTime: number = 0;
   capturedImagesize: number = 0;
   imageHeight: number = 0;
   imageWidth: number = 0;
+  isFirstInitialization: boolean = true;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
@@ -39,8 +42,14 @@ export class CameraComponent implements OnInit {
     }
   }
 
-  initCamera() {
-    this.cameraInitStartTime = performance.now();
+  async initCamera() {
+    const currentTime = performance.now();
+    if (this.isFirstInitialization) {
+      this.cameraInitStartTime = currentTime;
+      this.isFirstInitialization = false;
+    } else {
+      this.cameraReloadStartTime = currentTime;
+    }
     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
       console.error(
         'Browser API navigator.mediaDevices.getUserMedia not available'
@@ -61,11 +70,17 @@ export class CameraComponent implements OnInit {
           this.video = this.videoElement.nativeElement;
           this.video.srcObject = stream;
           this.video.play();
-          this.cameraInitElapsedTime =
-            performance.now() - this.cameraInitStartTime;
-          console.log(
-            `Camera initialized in ${this.cameraInitElapsedTime} milliseconds.`
-          );
+          const elapsedTime = performance.now() - currentTime;
+          if (this.cameraInitStartTime === currentTime) {
+            this.cameraInitElapsedTime = elapsedTime;
+            console.log(
+              `First camera initialization in ${this.cameraInitElapsedTime} milliseconds.`
+            );
+          } else {
+            this.cameraReloadElapsedTime = elapsedTime;
+            console.log(`Camera reinitialized in ${this.cameraReloadElapsedTime} milliseconds.`);
+
+          }
         }
       })
       .catch((err) => console.error('Error accessing camera: ', err));
@@ -93,7 +108,7 @@ export class CameraComponent implements OnInit {
       });
 
       this.cameraCaptureElapsedTime =
-            performance.now() - this.cameraCaptureStartTime;
+        performance.now() - this.cameraCaptureStartTime;
     }
   }
   dataURLToBlob(dataURL: string): Promise<Blob> {

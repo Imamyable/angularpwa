@@ -24,4 +24,8 @@
 	<span *ngIf="cameraCaptureElapsedTime">
 		Captured in: {{ cameraCaptureElapsedTime | number:'1.0-2' }} milliseconds.
 	</span>
+	<br/>
+	<span *ngIf="cameraReloadElapsedTime">
+		Camera reinitializedin: {{ cameraReloadElapsedTime | number:'1.0-2' }} milliseconds.
+	</span>
 </span>
