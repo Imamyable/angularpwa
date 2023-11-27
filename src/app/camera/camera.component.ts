@@ -46,7 +46,7 @@ async function findBestCamera() {
       if(settings.facingMode !== 'environment')
       {
         console.log('facing mode:', settings.facingMode);
-        score -= 100;
+        score = 0;
       }
       
       // Update best match
@@ -98,6 +98,8 @@ export class CameraComponent implements OnInit {
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
   ngOnInit(): void {
+    const currentTime = performance.now();
+    this.cameraInitStartTime = currentTime;
     if (isPlatformBrowser(this.platformId)) {
       findBestCamera().then(bestCameraId => {
         if (bestCameraId) {
@@ -109,12 +111,12 @@ export class CameraComponent implements OnInit {
         }
       });
       // Only initialize the camera when in the browser
-      
+     
     }
     
   }
 
-  async initCamera() {
+  initCamera() {
     const currentTime = performance.now();
     if (this.isFirstInitialization) {
       this.cameraInitStartTime = currentTime;
