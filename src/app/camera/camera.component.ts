@@ -61,12 +61,15 @@ export class CameraComponent implements OnInit {
       .getUserMedia({
         video: {
           facingMode: 'environment',
-          height: 1920 ,
-          width: 1080 ,
-          aspectRatio:  9/16 
+          height: { ideal: 1920 }, 
+          width: { ideal: 1080 },   
+          aspectRatio:  0.5625
+
         },
       })
       .then((stream) => {
+        const settings = stream.getVideoTracks()[0].getSettings();
+        console.log('Camera settings:', settings);
         if (this.videoElement) {
           this.video = this.videoElement.nativeElement;
           this.video.srcObject = stream;
