@@ -40,7 +40,7 @@ async function findBestCamera() {
       if(settings.facingMode !== 'environment')
       {
         console.log('facing mode:', settings.facingMode);
-        score === 0;
+        score -= 100;
       }
       
       // Update best match
