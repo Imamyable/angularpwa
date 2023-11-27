@@ -38,7 +38,7 @@ async function findBestCamera() {
       }
       if(settings.facingMode !== 'environment')
       {
-        score == 0;
+        score === 0;
       }
       
       // Update best match
