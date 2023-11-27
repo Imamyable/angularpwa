@@ -26,18 +26,19 @@ async function findBestCamera() {
 
       // Initialize score
       let score = 0;
-      if(settings.facingMode !== 'environment')
-      {
-        return;
-      }
+     
       // Check aspect ratio
-      if (settings.aspectRatio && settings.aspectRatio === 0.5625) {
+      if (settings.aspectRatio && settings.aspectRatio < 1) {
         score += 10; // Ideal aspect ratio
       }
 
       // Check height
       if (settings.height && settings.height >= 1920) {
         score += 5; // Ideal or higher height
+      }
+      if(settings.facingMode !== 'environment')
+      {
+        score == 0;
       }
       
       // Update best match
