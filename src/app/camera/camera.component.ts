@@ -19,7 +19,12 @@ async function findBestCamera() {
     console.log('Checking device:', device.deviceId);
     try {
       const stream = await navigator.mediaDevices.getUserMedia({
-        video: { deviceId: { exact: device.deviceId } }
+        video: { 
+        deviceId: { exact: device.deviceId },
+        facingMode: 'environment',
+        height: { ideal: 1920 },  
+        aspectRatio: { ideal: 0.5625},
+        frameRate: { ideal: 30, max: 60 }, }
       });
       const videoTrack = stream.getVideoTracks()[0];
       const settings = videoTrack.getSettings();
@@ -81,6 +86,13 @@ export class CameraComponent implements OnInit {
   isFirstInitialization: boolean = true;
   selectedCamera: string = '';
 
+  settings: MediaTrackConstraintSet = {
+    facingMode: 'environment',
+    height: { ideal: 1920 },  
+    aspectRatio: { ideal: 0.5625},
+    frameRate: { ideal: 30, max: 60 },
+  };
+
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
   ngOnInit(): void {
@@ -119,13 +131,7 @@ export class CameraComponent implements OnInit {
     navigator.mediaDevices
     .getUserMedia({
       
-      video: {
-        deviceId: { exact:  this.selectedCamera },
-        facingMode: 'environment',
-        height: { ideal: 1920 },  
-        aspectRatio: { ideal: 0.5625},
-        frameRate: { ideal: 30, max: 60 },
-      },
+      video: this.settings,
     })
     .then((stream) => {
       const settings = stream.getVideoTracks()[0].getSettings();
