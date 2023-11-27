@@ -23,6 +23,7 @@ async function findBestCamera() {
         deviceId: { exact: device.deviceId },
         facingMode: 'environment',
         height: { ideal: 1920 },  
+        width: { ideal: 1080 },
         aspectRatio: { ideal: 0.5625},
         frameRate: { ideal: 30, max: 60 }, }
       });
