@@ -9,6 +9,52 @@ import {
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { CarLeftSvgMaskComponent } from '../car-left-svg-mask/car-left-svg-mask.component';
 
+async function findBestCamera() {
+  const devices = await navigator.mediaDevices.enumerateDevices();
+  const videoInputs = devices.filter(device => device.kind === 'videoinput');
+
+  let bestMatch = { deviceId: '', score: -1 };
+
+  for (const device of videoInputs) {
+    console.log('Checking device:', device.deviceId);
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({
+        video: { deviceId: { exact: device.deviceId } }
+      });
+      const videoTrack = stream.getVideoTracks()[0];
+      const settings = videoTrack.getSettings();
+
+      // Initialize score
+      let score = 0;
+
+      // Check aspect ratio
+      if (settings.aspectRatio && settings.aspectRatio === 0.5625) {
+        score += 10; // Ideal aspect ratio
+      }
+
+      // Check height
+      if (settings.height && settings.height >= 1920) {
+        score += 5; // Ideal or higher height
+      }
+
+      // Check frame rate
+      if (settings.frameRate && settings.frameRate >= 30 && settings.frameRate <= 60) {
+        score += 5; // Within frame rate range
+      }
+
+      // Update best match
+      if (score > bestMatch.score) {
+        bestMatch = { deviceId: device.deviceId, score };
+      }
+
+      videoTrack.stop(); // Stop the stream
+    } catch (error) {
+      console.error('Error accessing camera: ', error);
+    }
+  }
+
+  return bestMatch.deviceId;
+}
 @Component({
   selector: 'app-camera',
   standalone: true,
@@ -32,14 +78,25 @@ export class CameraComponent implements OnInit {
   imageHeight: number = 0;
   imageWidth: number = 0;
   isFirstInitialization: boolean = true;
+  selectedCamera: string = '';
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
+      findBestCamera().then(bestCameraId => {
+        if (bestCameraId) {
+          this.selectedCamera = bestCameraId;
+          console.log('Best matching camera device ID:', bestCameraId);
+          this.initCamera();  
+        } else {
+          console.log('No suitable camera found.');
+        }
+      });
       // Only initialize the camera when in the browser
-      this.initCamera();
+      
     }
+    
   }
 
   async initCamera() {
@@ -57,43 +114,45 @@ export class CameraComponent implements OnInit {
       return;
     }
 
+
     navigator.mediaDevices
-      .getUserMedia({
-        
-        video: {
-          facingMode: 'environment',
-          height: { ideal: 1920 },  
-          aspectRatio: { ideal: 0.5625},
-          frameRate: { ideal: 30, max: 60 },
+    .getUserMedia({
+      
+      video: {
+        deviceId: { exact:  this.selectedCamera },
+        facingMode: 'environment',
+        height: { ideal: 1920 },  
+        aspectRatio: { ideal: 0.5625},
+        frameRate: { ideal: 30, max: 60 },
+      },
+    })
+    .then((stream) => {
+      const settings = stream.getVideoTracks()[0].getSettings();
+      // stream.getVideoTracks()[0].applyConstraints({
+      //   height: { ideal: 1920 },  
+      //   aspectRatio: { ideal: 0.5625},
+      //   frameRate: { ideal: 30, max: 60 },
+      // });
+      console.log('Camera settings:', settings);
+      if (this.videoElement) {
+        this.video = this.videoElement.nativeElement;
+        this.video.srcObject = stream;
+        this.video.play();
+        const elapsedTime = performance.now() - currentTime;
+        if (this.cameraInitStartTime === currentTime) {
+          this.cameraInitElapsedTime = elapsedTime;
+          console.log(
+            `First camera initialization in ${this.cameraInitElapsedTime} milliseconds.`
+          );
+        } else {
+          this.cameraReloadElapsedTime = elapsedTime;
+          console.log(`Camera reinitialized in ${this.cameraReloadElapsedTime} milliseconds.`);
 
-        },
-      })
-      .then((stream) => {
-        const settings = stream.getVideoTracks()[0].getSettings();
-        // stream.getVideoTracks()[0].applyConstraints({
-        //   height: { ideal: 1920 },  
-        //   aspectRatio: { ideal: 0.5625},
-        //   frameRate: { ideal: 30, max: 60 },
-        // });
-        console.log('Camera settings:', settings);
-        if (this.videoElement) {
-          this.video = this.videoElement.nativeElement;
-          this.video.srcObject = stream;
-          this.video.play();
-          const elapsedTime = performance.now() - currentTime;
-          if (this.cameraInitStartTime === currentTime) {
-            this.cameraInitElapsedTime = elapsedTime;
-            console.log(
-              `First camera initialization in ${this.cameraInitElapsedTime} milliseconds.`
-            );
-          } else {
-            this.cameraReloadElapsedTime = elapsedTime;
-            console.log(`Camera reinitialized in ${this.cameraReloadElapsedTime} milliseconds.`);
-
-          }
         }
-      })
-      .catch((err) => console.error('Error accessing camera: ', err));
+      }
+    })
+    .catch((err) => console.error('Error accessing camera: ', err));
+    
   }
   capture() {
     this.cameraCaptureStartTime = performance.now();
