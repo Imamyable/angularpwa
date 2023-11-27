@@ -89,7 +89,8 @@ export class CameraComponent implements OnInit {
 
   settings: MediaTrackConstraintSet = {
     facingMode: 'environment',
-    height: { ideal: 1920 },  
+    height: { ideal: 1080 },  
+    width: { ideal: 1920  }, 
     aspectRatio: { ideal: 0.5625},
     frameRate: { ideal: 30, max: 60 },
   };
