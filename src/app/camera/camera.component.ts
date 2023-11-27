@@ -61,7 +61,7 @@ export class CameraComponent implements OnInit {
       .getUserMedia({
         video: {
           facingMode: 'environment',
-          height: { ideal: 1920 }, 
+          height: { exact: 1920 }, 
           width: { ideal: 1080 },   
           aspectRatio:  0.5625
 
