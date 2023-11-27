@@ -59,16 +59,22 @@ export class CameraComponent implements OnInit {
 
     navigator.mediaDevices
       .getUserMedia({
+        
         video: {
           facingMode: 'environment',
-          height: { exact: 1920 }, 
-          width: { ideal: 1080 },   
-          aspectRatio:  0.5625
+          height: { ideal: 1920 },  
+          aspectRatio: { ideal: 0.5625},
+          frameRate: { ideal: 30, max: 60 },
 
         },
       })
       .then((stream) => {
         const settings = stream.getVideoTracks()[0].getSettings();
+        // stream.getVideoTracks()[0].applyConstraints({
+        //   height: { ideal: 1920 },  
+        //   aspectRatio: { ideal: 0.5625},
+        //   frameRate: { ideal: 30, max: 60 },
+        // });
         console.log('Camera settings:', settings);
         if (this.videoElement) {
           this.video = this.videoElement.nativeElement;
