@@ -23,6 +23,7 @@ async function findBestCamera() {
       });
       const videoTrack = stream.getVideoTracks()[0];
       const settings = videoTrack.getSettings();
+      console.log('Device settings:', settings);
 
       // Initialize score
       let score = 0;
@@ -38,6 +39,7 @@ async function findBestCamera() {
       }
       if(settings.facingMode !== 'environment')
       {
+        console.log('facing mode:', settings.facingMode);
         score === 0;
       }
       
