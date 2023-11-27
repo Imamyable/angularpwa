@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1701088260629,
+  "timestamp": 1701089400331,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -28,12 +28,8 @@
         "ignoreVary": true
       },
       "urls": [
-        "/assets/icons/icon-128x128.png",
         "/assets/icons/icon-144x144.png",
-        "/assets/icons/icon-152x152.png",
         "/assets/icons/icon-192x192.png",
-        "/assets/icons/icon-384x384.png",
-        "/assets/icons/icon-512x512.png",
         "/assets/icons/icon-72x72.png",
         "/assets/icons/icon-96x96.png",
         "/assets/left.svg"
@@ -43,19 +39,15 @@
   ],
   "dataGroups": [],
   "hashTable": {
-    "/assets/icons/icon-128x128.png": "f912963bdc6d5a38d8f1dd0afbaab2ce8d657acb",
-    "/assets/icons/icon-144x144.png": "b155fd5f2fd5d2ea7760721063003c4cd95fd783",
-    "/assets/icons/icon-152x152.png": "eae6e0f0c8afb8aaae339e2a569b43e9238e5e6c",
-    "/assets/icons/icon-192x192.png": "15c4180454633880d98674aa7394656196c91584",
-    "/assets/icons/icon-384x384.png": "94a915751ef6c9282df9aea405ad679230631814",
-    "/assets/icons/icon-512x512.png": "1de182f76f7329dfa8f9fcdd1fdcdd695bea6a99",
-    "/assets/icons/icon-72x72.png": "aa88a6096bd973be7f6d7a5489bfa6bc2463f8c4",
-    "/assets/icons/icon-96x96.png": "7fb8f59c30ce2ff12c700321a0b39e14b3dc8f95",
+    "/assets/icons/icon-144x144.png": "93cd42a6d675136aed1b654eefd8d7377794be15",
+    "/assets/icons/icon-192x192.png": "d8042e1cc03b0d56203e28a55f475826ad011e21",
+    "/assets/icons/icon-72x72.png": "76fb8f1076a1344821a14aed96fa3b6d2cae0d17",
+    "/assets/icons/icon-96x96.png": "d4bfa12240bf368eec3755080ba7ab681de41f11",
     "/assets/left.svg": "e4c2b77490dbf69fcaa21cc91b3a836c36965395",
     "/favicon.ico": "9c39f434fe1261f68c5e3eefdf734630d99c5670",
     "/index.html": "e9e011bdd99976c591be4abee57845d8c6f8b14e",
     "/main-J3V4XYSR.js": "c8092e5d3a08b1005b40e122d8d2cc927e17b171",
-    "/manifest.webmanifest": "0fd7748cce279e3ae51c24d717d2c6f69aeff932",
+    "/manifest.webmanifest": "ac44858e67133b600f3f35fc8d2eab461ea6e899",
     "/polyfills-LZBJRJJE.js": "fda1c82c5c620f1fa442f687b3df45a037f6fcc9",
     "/styles-YI7UX7YM.css": "35239d0dd661e46cf369c63df895b74e30d18a5d"
   },
