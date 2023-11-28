@@ -1,6 +1,6 @@
 <div class="absoluteFill">
 	
-	<video #videoElement autoplay></video>
+	<video #videoElement autoplay (loadeddata)="onCameraLoaded()"></video>
 
 	<car-left-svg-mask></car-left-svg-mask>
 	<img *ngIf="capturedImage" [src]="capturedImage" alt="Captured Image" />
@@ -25,7 +25,7 @@
 		Captured in: {{ cameraCaptureElapsedTime | number:'1.0-2' }} milliseconds.
 	</span>
 	<br/>
-	<span *ngIf="cameraReloadElapsedTime">
+	<!-- <span *ngIf="cameraReloadElapsedTime">
 		Camera reinitializedin: {{ cameraReloadElapsedTime | number:'1.0-2' }} milliseconds.
-	</span>
+	</span> -->
 </span>

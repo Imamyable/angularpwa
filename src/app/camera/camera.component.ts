@@ -120,7 +120,6 @@ export class CameraComponent implements OnInit {
     const currentTime = performance.now();
     if (this.isFirstInitialization) {
       this.cameraInitStartTime = currentTime;
-      this.isFirstInitialization = false;
     } else {
       this.cameraReloadStartTime = currentTime;
     }
@@ -149,22 +148,27 @@ export class CameraComponent implements OnInit {
         this.video = this.videoElement.nativeElement;
         this.video.srcObject = stream;
         this.video.play();
-        const elapsedTime = performance.now() - currentTime;
-        if (this.cameraInitStartTime === currentTime) {
-          this.cameraInitElapsedTime = elapsedTime;
-          console.log(
-            `First camera initialization in ${this.cameraInitElapsedTime} milliseconds.`
-          );
-        } else {
-          this.cameraReloadElapsedTime = elapsedTime;
-          console.log(`Camera reinitialized in ${this.cameraReloadElapsedTime} milliseconds.`);
 
-        }
       }
     })
     .catch((err) => console.error('Error accessing camera: ', err));
     
   }
+  onCameraLoaded() {
+    const elapsedTime = performance.now() - this.cameraInitStartTime;
+    if (this.isFirstInitialization) {
+      this.cameraInitElapsedTime = elapsedTime;
+      this.isFirstInitialization = false;
+      console.log(
+        `First camera initialization in ${this.cameraInitElapsedTime} milliseconds.`
+      );
+    } else {
+      this.cameraReloadElapsedTime = elapsedTime;
+      console.log(`Camera reinitialized in ${this.cameraReloadElapsedTime} milliseconds.`);
+
+    }
+  }
+
   capture() {
     this.cameraCaptureStartTime = performance.now();
     console.log('Image captured');
