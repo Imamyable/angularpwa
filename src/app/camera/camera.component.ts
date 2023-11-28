@@ -5,6 +5,7 @@ import {
   ElementRef,
   Inject,
   PLATFORM_ID,
+  Input,
 } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { CarLeftSvgMaskComponent } from '../car-left-svg-mask/car-left-svg-mask.component';
@@ -75,7 +76,7 @@ export class CameraComponent implements OnInit {
     | undefined;
   video!: HTMLVideoElement | undefined;
   capturedImage: string | null = null;
-  cameraInitStartTime: number = 0;
+  @Input() cameraInitStartTime: number = 0;
   cameraInitElapsedTime: number = 0;
   cameraReloadStartTime: number = 0;
   cameraReloadElapsedTime: number = 0;
@@ -98,8 +99,6 @@ export class CameraComponent implements OnInit {
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
   ngOnInit(): void {
-    const currentTime = performance.now();
-    this.cameraInitStartTime = currentTime;
     if (isPlatformBrowser(this.platformId)) {
       findBestCamera().then(bestCameraId => {
         if (bestCameraId) {
@@ -119,7 +118,7 @@ export class CameraComponent implements OnInit {
   initCamera() {
     const currentTime = performance.now();
     if (this.isFirstInitialization) {
-      this.cameraInitStartTime = currentTime;
+
     } else {
       this.cameraReloadStartTime = currentTime;
     }

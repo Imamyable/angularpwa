@@ -1,6 +1,6 @@
 <div class="absoluteFill">
 	
-	<video #videoElement autoplay (loadeddata)="onCameraLoaded()"></video>
+	<video #videoElement autoplay  (canplay)="onCameraLoaded()"></video>
 
 	<car-left-svg-mask></car-left-svg-mask>
 	<img *ngIf="capturedImage" [src]="capturedImage" alt="Captured Image" />
@@ -11,7 +11,7 @@
 	<button class="retake-button" *ngIf="capturedImage" (click)="retakePhoto()"></button>
 </div>
 <span class="time" *ngIf="cameraInitElapsedTime">
-	Camera initialized in: {{ cameraInitElapsedTime | number:'1.0-2' }} milliseconds.
+	Camera initialized in: {{ cameraInitElapsedTime }} milliseconds.
 	<br/>
 	<span *ngIf="imageWidth">
 		Captured image dimensions(w x h): {{ imageWidth }} x {{  imageHeight }} 
