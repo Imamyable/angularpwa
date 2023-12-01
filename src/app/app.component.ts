@@ -12,10 +12,8 @@ import { CarLeftSvgMaskComponent } from './car-left-svg-mask/car-left-svg-mask.c
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  cameraInitStartTime: number = 0;
   title = 'camera-pwa';
   ngOnInit() {
-    const currentTime = performance.now();
-    this.cameraInitStartTime = currentTime;
+    
   }
 }
